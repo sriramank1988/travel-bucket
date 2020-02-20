@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const axios = require("axios")
 const port = 8080
+const pg = require('pg')
 const clientID = '4dd63b646b0043412be0'
 const clientSecret = '38c0d44c22477f4abd8da92c5b90dae6cac0557f'
 app.set('views','./views')
@@ -28,10 +29,15 @@ app.get('/oauth/redirect', (req, res) => {
             }
         })
         .then(({ data }) => {
-            res.render('bucketlist', { data })
+            const pool = new pg.Pool({ database: 'bucketdb' })
+            pool
+            .query('select * from bucket where user_id = 1;')
+            .then((dbres)=> {
+                //.then(results => res.json({ data: results.rows }));
+                console.log(dbres.rows)
+                res.render('bucketlist', { data , dbinfo: dbres.rows})
+            })
         })
-        // .catch(e => console.log(e))
-       // res.redirect(`/bucketlist.html?access_token=${accessToken}`)
     })
 })
   

@@ -9,7 +9,9 @@
     <h1>Bucket List</h1>
     <p>Login <%= data.login%></p> 
     <p>id : <%= data.id%></p>
-
-    
+    <%dbinfo.forEach(item => {%>
+        <p>city :  <%= item.city%></p> 
+        <img src="<%= item.city_photo%>" alt="">
+    <%})%>
 </body>
 </html>
