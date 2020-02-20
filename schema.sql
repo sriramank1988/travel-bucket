@@ -39,6 +39,9 @@ INSERT INTO bucket (city, city_photo,user_id) VALUES('MEl5','http://test3',2);
 INSERT INTO bucket (city, city_photo,user_id) VALUES('MEl','http://test1',2);
 INSERT INTO bucket (city, city_photo,user_id) VALUES('MEl2','http://test1',2);
 
+INSERT INTO bucket (city, city_photo,user_id) VALUES('Melbourne','https://media0.giphy.com/media/OjAXR19wXcVNK/giphy.gif?cid=44b7432cb44aa59efae0724d92b88b146ff38d9f879ea563&rid=giphy.gif',1);
+
+
 -- activity seeding
 INSERT INTO activity (activity_title,activity_detail,activity_photo,bucket_id) VALUES('run','run all day long','http://act1',1);
 INSERT INTO activity (activity_title,activity_detail,activity_photo,bucket_id) VALUES('drive','drive all day long','http://act2',1);
@@ -50,10 +53,4 @@ INSERT INTO activity (activity_title,activity_detail,activity_photo,bucket_id) V
 --user seeding
 INSERT INTO users (username, github_id) VALUES('jp1',12423423);
 INSERT INTO users (username, github_id) VALUES('jp2',12423423);
-
-
-
-
-
-
-
+INSERT INTO users (username, github_id) VALUES('sriramank1988',43689259);
