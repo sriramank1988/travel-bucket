@@ -1,8 +1,16 @@
 const express = require("express")
 const app = express()
 const axios = require("axios")
-const port = 8080
+const port = process.env.PORT || 8080
 const pg = require('pg')
+
+let pool
+if (process.env.PRODUCTION) {
+    pool = new pg.Pool({ connectionString: process.env.DATABASE_URL })
+} else {
+    pool = new pg.Pool({ database: 'bucketdb' })
+}
+
 const clientID = '4dd63b646b0043412be0'
 const clientSecret = '38c0d44c22477f4abd8da92c5b90dae6cac0557f'
 app.set('views','./views')
@@ -29,7 +37,6 @@ app.get('/oauth/redirect', (req, res) => {
             }
         })
         .then(({ data }) => {
-            const pool = new pg.Pool({ database: 'bucketdb' })
             pool
             .query('select * from bucket where user_id = 1;')
             .then((dbres)=> {
@@ -40,7 +47,6 @@ app.get('/oauth/redirect', (req, res) => {
 })
 
 app.get("/view/detail/bucketid/:id", (req,res) => {
-    const pool = new pg.Pool({ database: 'bucketdb' })
     const bucketid = req.params.id
     pool
     .query('select * from bucket where id = $1;',[bucketid])
