@@ -33,15 +33,28 @@ app.get('/oauth/redirect', (req, res) => {
             pool
             .query('select * from bucket where user_id = 1;')
             .then((dbres)=> {
-                //.then(results => res.json({ data: results.rows }));
-                console.log(dbres.rows)
                 res.render('bucketlist', { data , dbinfo: dbres.rows})
             })
         })
     })
 })
-  
 
-app.listen(port, () =>{
+app.get("/view/detail/bucketid/:id", (req,res) => {
+    const pool = new pg.Pool({ database: 'bucketdb' })
+    const bucketid = req.params.id
+    pool
+    .query('select * from bucket where id = $1;',[bucketid])
+    .then((dbRes) => {
+        pool
+        .query('select * from activity where bucket_id = $1;',[bucketid])
+        .then((activityRes)=> {
+        
+            res.render('viewdetails', {bucketinfo: dbRes.rows[0], activity: activityRes.rows})
+
+        })
+    })
+})
+
+app.listen(port, () => {
     console.log(`listening in port ${port}`)
 })

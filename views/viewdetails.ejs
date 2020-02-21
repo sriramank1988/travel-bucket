@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h3>Detail Page</h3>
+    <h4><a href="https://github.com/login/oauth/authorize?client_id=4dd63b646b0043412be0&redirect_uri=http://localhost:8080/oauth/redirect">Go Back to List</a></h4>
+    <div class="flex-wrap">
+        <div>
+            <img class = "city-image-wrap" src="<%= bucketinfo.city_photo%>" alt="">
+        </div>
+        <div>
+            <p>city :  <span id="city"><%= bucketinfo.city%></span></p>
+            <p>Budget : <%= bucketinfo.budget %></p>
+            <p>Year : <%= bucketinfo.year %></p>
+            <p>Month : <span id="month"><%= bucketinfo.month %></span></p>
+            <p>Expected Temp: <span id="temp">Loading...</span></p>
+        </div>
+        <div id="map">
+
+        </div>
+    </div>
+    <h3>Things To do</h3>
+    <div class="grid">
+        <%activity.forEach(item => {%>
+            <div class="activity-wrap">
+                <img class = "activity-image-wrap" src="<%= item.activity_photo%>" alt="">
+                <p>Title :  <%= item.activity_title%></p>
+                <p>Detail : <%= item.activity_detail %></p>
+            </div>
+        <%})%>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=Arb-CccnAOw_Efn36THgsPZzHezYU8kL941Rzf7dOEFLprcGP37HUl1R7aob4ISu' async defer></script>
+    <script src="/js/api.js"></script>
+</body>
+</html>
