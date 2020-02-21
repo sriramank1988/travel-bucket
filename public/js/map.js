@@ -11,7 +11,7 @@ function GetMap(location_lat, location_log) {
       { latitude: pin_lat, longitude: pin_log },
       {
         title: document.querySelector("#city").textContent,
-        subTitle: "Dream dist",
+        subTitle: "Dream place",
         text: "1"
       }
     );
