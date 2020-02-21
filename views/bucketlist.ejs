@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bucket List</title>
-</head>
-<body>
-    <h1>Bucket List</h1>
-    <p>Login <%= data.login%></p> 
-    <p>id : <%= data.id%></p>
-    <%dbinfo.forEach(item => {%>
-        <p>city :  <%= item.city%></p> 
-        <img src="<%= item.city_photo%>" alt="">
-    <%})%>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bucket List</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <h1>Bucket List</h1>
+        <p>Login <%= data.login%></p> 
+        <p>id : <%= data.id%></p>
+        <form action="">
+            <button>Add new</button>
+        </form>
+        <%dbinfo.forEach(item => {%>
+            <div class="flex-wrap">
+            <div>
+                <img class ="list-image" src="<%= item.city_photo%>" alt="">
+            </div>
+            <div>
+                <p>city :  <%= item.city%></p>
+                <p>Budget : <%= item.budget %></p>
+                <p>Year : <%= item.year %></p>
+                <p>Month : <%= item.month %></p>
+                <a href="/view/detail/bucketid/<%= item.id %>">View details</a>
+            </div>
+        </div>
+        <%})%>
+    </body>
 </html>
